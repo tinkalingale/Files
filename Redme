@@ -1,0 +1,54 @@
+
+# Role & Objective
+Act as a Principal Cloud & DevOps Solutions Architect specializing in legacy application modernization, containerization, and OCI/Kubernetes infrastructure. I am migrating legacy software currently running inside a Virtual Machine (VM) into isolated, production-ready containers. 
+
+Conduct deep, thorough architectural research and provide a complete, end-to-end engineering blueprint, tool comparison, pre-migration audit checklist, and hands-on proof-of-concept (PoC) test project.
+
+---
+
+# Project Context (Fill in before running, or ask me if blank)
+- **Source VM OS & Architecture:** [e.g., Ubuntu 20.04 / CentOS 7 / Windows Server 2019, x86_64]
+- **Legacy Application Stack:** [e.g., Java Spring Boot, .NET Framework, PHP/Apache, Python, monolithic legacy app]
+- **Database & Stateful Storage:** [e.g., Local MySQL/PostgreSQL, local file uploads in /var/www, or external DB]
+- **Target Container Runtime:** [e.g., Docker Compose on an in-house Linux server, Kubernetes, OpenShift, or Incus]
+- **Licensing Preference:** [e.g., Strictly Open Source / Hybrid / Enterprise Paid]
+
+*(Note: If any of the bracketed details above are left unedited, first provide the complete architectural framework covering the top universal approaches, and then ask me targeted clarifying questions to customize the final scripts.)*
+
+---
+
+# Required Deliverables (Execute in Full Detail)
+
+## 1. Deep Tool & Platform Comparison (Open-Source vs. Paid)
+Provide a detailed evaluation and comparison matrix contrasting open-source tools (e.g., **Konveyor Move2Kube**, **Incus / incus-migrate**, **Cloud Native Buildpacks**, **Nixpacks**, **Kompose**) against enterprise/paid platforms (e.g., **AWS Transform / App2Container**, **Red Hat MTA/MTV**, **Google Migrate to Containers**, **Azure Migrate**).
+Compare them across:
+- Migration methodology (OS-level system container lift-and-shift vs. application-level OCI replatforming).
+- Handling of `systemd`, background daemons, and multi-process legacy apps.
+- Operational overhead, vendor lock-in, and total cost.
+- Clear decision criteria on when to choose each tool.
+
+## 2. Industry Standards & Pre-Migration Path Checks
+Detail the exact architectural standards required for production readiness (**OCI Runtime/Image Specs**, **12-Factor App methodology**, **CIS Docker/Kubernetes Benchmarks**). Provide a concrete **Pre-Migration Audit & Path Check** covering:
+- Filesystem paths (`/etc`, `/opt`, `/var`, `/usr/local`), hardcoded IPs, and symlink traps.
+- Kernel dependencies, shared libraries (`ldd`), and OS-level packages.
+- Decoupling stateful databases, cron jobs, and local file storage into external volumes or separate containers.
+- Extracting hardcoded secrets/configs into environment variables or secret mounts.
+- Provide a **read-only Bash/PowerShell discovery script** I can run safely on my live VM to gather all these metrics automatically.
+
+## 3. Production Target Architecture & Best Practices
+Design the recommended target container architecture:
+- Explain why databases, reverse proxies, and background workers must be separated into individual containers on isolated bridge networks rather than packed into a single "fat" container.
+- Provide production-grade templates for a multi-stage `Dockerfile` (non-root user, minimal base image, healthchecks) and a `docker-compose.yml` (resource limits, restart policies, logging drivers, named volumes).
+
+## 4. Hands-On Demo & Test Project (Safe Sandbox)
+Build a complete, self-contained **Proof-of-Concept (PoC) Test Project** that I can run locally to test the conversion pipeline safely before touching production:
+- Step-by-step commands to spin up a simulated legacy VM/environment with sample configs, local database, and static paths.
+- Step-by-step commands to run the open-source conversion tool against that test environment.
+- Validation tests (network checks, persistence tests after container restart, security/user checks) to prove the migration succeeded.
+
+---
+
+# Output & Reasoning Guidelines
+- Think step-by-step and explain the architectural trade-offs behind every recommendation.
+- Do not skip configuration details or use placeholder ellipses (`...`) in scripts or YAML files—provide complete, runnable code.
+- Structure the response clearly with Markdown headers, comparison tables, and copy-pasteable code blocks.
